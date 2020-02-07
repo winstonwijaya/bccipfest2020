@@ -1,4 +1,2 @@
-# .gitignore
-
-./*.pyc
-./instance/
+*.pyc
+instance/
