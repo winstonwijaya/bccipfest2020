@@ -1,0 +1,77 @@
+<!-- app/templates/admin/roles/roles.html -->
+
+{% import "bootstrap/utils.html" as utils %}
+{% extends "base.html" %}
+{% block title %}Storages{% endblock %}
+{% block body %}
+
+<div class="container" id="welcome">
+        <h2>WELCOME, {{ current_user.username }}!</h2>
+</div>
+    
+<div class="container" id="nav">
+    <div class="row" style="text-align: center;">
+        <a href="{{ url_for('home.admin_dashboard') }}"><div class="col-sm-2">Dashboard</div></a>
+        <a href="{{ url_for('admin.list_participants') }}"><div class="col-sm-2">Paricipant</div></a>
+        <a href="{{ url_for('admin.list_storages') }}"><div class="col-sm-2">Storage</div></a>
+        <div class="col-sm-4"></div>
+        <a href="{{ url_for('auth.logout') }}"><div class="col-sm-2">Logout</div></a>
+    </div>
+</div>
+
+<div class="outer">
+<div class="middle">
+    <div class="inner">
+    <br/>
+    {{ utils.flashed_messages() }}
+    <br/>
+    <h1 style="text-align:center;">Storages</h1>
+    {% if storages %}
+        <hr class="intro-divider">
+        <div class="center">
+        <table class="table table-striped table-bordered">
+            <thead>
+            <tr>
+                <th width="30%"> Storage Owner </th>
+                <th width="20%"> Storage Number </th>
+                <th width="20%"> Current Fill </th>
+                <th width="15%"> Edit </th>
+                <th width="15%"> Delete </th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for storage in storages %}
+            <tr>
+                <td> {{ storage.storown }} </td>
+                <td> {{ storage.stornum }} </td>
+                <td> {{ storage.current_capacity }} </td>
+                <td>
+                <a href="{{ url_for('admin.edit_storage', id=storage.id) }}">
+                    <i class="fa fa-pencil"></i> Edit 
+                </a>
+                </td>
+                <td>
+                <a href="{{ url_for('admin.delete_storage', id=storage.id) }}">
+                    <i class="fa fa-trash"></i> Delete 
+                </a>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        </div>
+        <div style="text-align: center">
+    {% else %}
+        <div style="text-align: center">
+        <h3> No storages have been added. </h3>
+        <hr class="intro-divider">
+    {% endif %}
+        <a href="{{ url_for('admin.add_storage') }}" class="btn btn-default btn-lg" id="storages">
+        <i class="fa fa-plus"></i>
+        Add Storage
+        </a>
+    </div>
+    </div>
+</div>
+</div>
+{% endblock %}

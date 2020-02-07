@@ -1,0 +1,392 @@
+body, html{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* BCC logo */
+#logo{
+    width: 25%;
+    /* min-width: 100px; */
+    height: 25%;
+    /* min-height: 100px; */
+    margin: 30px 0 38px 0;
+}
+
+/* IPFEST Welcome */
+h1{
+    font-size: 50px;
+    letter-spacing: 1.5px;
+    font-family: Impact, fantasy;
+    margin-top: 90px;
+    font-weight: bold;
+}
+
+/* username pw field*/
+#username, #password {
+    width: 85%;
+    padding: 24px 20px;
+    margin: 8px 0;
+    font-style: italic;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 10px;
+    font-size: 14px;
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+
+#cont-text{
+    font-size: 20px;
+}
+
+#button{
+    width: 7%;
+    background-color: rgb(254, 110, 0);
+    color: white;
+    font-size: 18px;
+    padding: 20px 25px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;    
+    margin-top: 4%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+button:hover{
+    background-color: lightsalmon;
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    border: none;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #888;
+    width: 40%; /* Could be more or less, depending on screen size */
+    height: 60%;
+}
+
+/* The Close Button (x) */
+.close {
+    position: absolute;
+    right: 25px;
+    top: 0;
+    color: #000;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: red;
+    cursor: pointer;
+}
+
+#notif{
+    margin-top: 60px;
+    margin-bottom: 100px;
+    font-family: Raleway;
+    font-size: 30px;
+    color: rgb(128,128,128); 
+}
+
+#text{
+    margin-left: 80px;
+}
+
+
+/* HOME CSS*/
+
+#time{
+    font-size: 35px;
+}
+
+#welcome{
+    margin: 0px 0px 0px 50px;
+}
+
+h2{
+    font-size: 50px;
+    letter-spacing: 1.5px;
+    font-family: Impact, fantasy;
+    margin-top: 50px;
+    font-weight: bold;
+}
+
+h3{
+    font-size: 30px;
+    font-family: Raleway;
+
+}
+
+h4{
+    margin-top: 40px;
+    margin-left: 30px;
+    text-align: left;
+}
+
+th, td {
+    font-size: 20px;
+    padding: 8px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+table {
+    border-collapse: collapse;
+    margin: 100px 0px 0px 0px;
+    width: 50%;
+    margin: 0;
+}
+
+.storage{
+    margin: 100px 0px 0px 600px;
+}
+
+.currency{
+    margin: 150px 0px 0px 600px;
+}
+
+#logout{
+    margin-top:50px; 
+}
+
+#list-peserta{
+    margin-left: 50px;
+    margin-top: 50px;
+    font-size: large;
+}
+
+li{
+    list-style-type: square;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+#change-storage-button, #change-currency-button{
+    background-color: tomato;
+    font-size: 12px;
+    padding: 10px 15px;
+    margin-top: 0px;
+}
+
+#change-storage-button:hover, #change-currency-button:hover{
+    background-color: orange;
+}
+
+#save-storage, #save-currency{
+    background-color: orange;
+    font-size: 14px;
+    padding: 10px 15px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    position: absolute;
+    right: 40%;
+    bottom: 0;
+}
+
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    padding-top: 100px; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4); ]
+  }
+
+.modal-content {
+    text-align: center;
+    background-color: white;
+    margin: auto; 
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 10px;
+    width: 30%;
+    height: 50%;
+}
+
+#curr{
+    height: 70%;
+}
+
+input[type=number] {
+    width: 20%;
+    padding: 5px 5px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid gray;
+    border-radius: 4px;
+  }
+
+#home{
+    color: rgb(252, 186, 3);
+    text-align: center;
+    margin-top: 5%;
+    font-size: 40px;
+    font-weight: bold;
+    font-family: raleway;
+}
+
+#home1{
+    min-width: 100%; 
+    min-height: 950px; 
+    background: url(../../static/img/bg.svg);
+    margin: 0;
+    padding: 0;
+}
+
+#logo1{
+    width: 17%;
+    /* min-width: 100px; */
+    height: 17%;
+    /* min-height: 100px; */
+    margin: 30px 0 38px 0;
+    margin-right: 20px;
+}
+
+.btn{
+    background-color: rgb(252, 186, 3);
+    border: none;
+    color: white;
+    padding: 15px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    font-size: 16px;
+    width: 7%;
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.content-section{
+    font-size: 20px;
+    display: block;
+    margin: auto;
+    width: 50%;
+    height: auto;
+}
+
+.content-section1{
+    font-size: 20px;
+    display: block;
+    margin: auto;
+    width: 80%;
+    height: auto;
+}
+
+#confirm_password{
+    width: 80%;
+    border-radius: 10px;
+    padding: 25px;
+    margin-left: 6.6%;
+}
+
+.center {
+    margin: auto;
+    width: 50%;
+}
+
+form{
+    width: 100%;
+    margin: auto;
+}
+
+label{
+    display: block;
+}
+
+.form-group.required{
+    margin-left: 100px;
+}
+
+#submit{
+    width: 20%;
+    background-color: rgb(254, 110, 0);
+    color: white;
+    font-size: 20px;
+    padding: 20px 25px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;    
+    margin-top: 30px;
+    margin-bottom: 5%;
+}
+
+.alert-info {
+    text-align: center;
+    width: 50%;
+    margin-left: 25%;
+    margin-top: 0;
+    color: #687430;
+    background-color: #e6ecca;
+    border-color: #aec251;
+}
+
+.outer {
+    display: table;
+    position: absolute;
+    height: 70%;
+    width: 100%;
+    padding: 0;
+}
+
+.middle {
+    padding: 0;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+
+.inner {
+    padding: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#nav{
+    font-size: 20px;
+    margin-left: 5%;
+    margin-top: 3%;
+}
+
+.col-sm-2{
+    padding: 20px;
+}
+
+.col-sm-2:hover{
+    background-color: #F5F5F5;
+}
+
+
+#participant, #storages{
+    width: 10%;
+}
+
+
+#dashboard{
+    width: 100%;
+}

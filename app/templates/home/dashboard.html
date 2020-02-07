@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+{% block body %}
+
+<div style="text-align: right; margin:20px 40px 0 0;">
+        <span id="time">02:00</span>
+    </div>
+
+    <div class="container" id="welcome">
+        <h2>WELCOME, {{ current_user.username }}!</h2>
+    </div>
+
+    <div class="storage">
+        <table>
+                <tr>
+                    <th>Number of Storage</th>
+                    <th>Capacity (maximum {{ 50 * storage.stornum }} barrel)</th>
+                </tr>
+                <tr>
+                    <th> {{ storage.stornum }} </th>
+                    <th> {{ storage.current_capacity  }} </th>
+                </tr>
+            </table>
+    </div>
+    {{ current_user.id }}
+    <div class="currency">
+        <table>
+                <tr>
+                    <th>FCD</th>
+                    <th>USD &#36;</th>
+                    <th>SAR &#65020;</th>
+                    <th>RUB &#8381;</th>
+                    <th>YEN &#165;</th>
+                </tr>
+                <tr>
+                    <th> {{ participant.fcd }} </th>
+                    <th> {{ participant.usd }} </th>
+                    <th> {{ participant.sar }} </th>
+                    <th> {{ participant.rub }} </th>
+                    <th> {{ participant.yen }} </th>
+                </tr>
+            </table>
+    </div>
+    <div class="text-center">
+        <a href="{{ url_for('auth.logout') }}"><div id="button">Logout</div></a>
+    </div>
+
+{% endblock %}
+
+{% block scrp %}
+<script>
+    function startTimer(duration, display) {
+    var timer = duration, minutes, seconds;
+        setInterval(function () {
+            minutes = parseInt(timer / 60, 10);
+            seconds = parseInt(timer % 60, 10);
+
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            display.textContent = minutes + ":" + seconds;
+
+            if (--timer < 0) {
+                timer = duration;
+            }
+        }, 1000);
+    }
+
+    window.onload = function () {
+        var maxTime = 120,
+        display = document.querySelector('#time');
+        startTimer(maxTime, display);
+        setTimeout(function(){
+            window.location.href = "{{ url_for('auth.logout') }}"
+        },120000);
+    };
+</script>
+
+{% endblock %}
