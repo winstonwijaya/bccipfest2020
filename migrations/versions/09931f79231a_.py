@@ -21,11 +21,11 @@ def upgrade():
     op.create_table('participants',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('partname', sa.String(length=60), nullable=True),
-    sa.Column('fcd', sa.Integer(), nullable=True),
-    sa.Column('usd', sa.Integer(), nullable=True),
-    sa.Column('sar', sa.Integer(), nullable=True),
-    sa.Column('rub', sa.Integer(), nullable=True),
-    sa.Column('yen', sa.Integer(), nullable=True),
+    sa.Column('fcd', sa.Float(), nullable=True),
+    sa.Column('usd', sa.Float(), nullable=True),
+    sa.Column('sar', sa.Float(), nullable=True),
+    sa.Column('rub', sa.Float(), nullable=True),
+    sa.Column('yen', sa.Float(), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_index(op.f('ix_participants_partname'), 'participants', ['partname'], unique=True)

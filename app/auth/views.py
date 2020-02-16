@@ -4,13 +4,13 @@ from flask_login import login_required, login_user, logout_user
 from . import auth
 from forms import LoginForm, RegistrationForm
 from .. import db
-from ..models import User
+from ..models import User, Participant, Storage
 
 @auth.route('/register', methods=['GET', 'POST'])
 def register():
     """
     Handle requests to the /register route
-    Add an employee to the database through the registration form
+    Add an user to the database through the registration form
     """
     form = RegistrationForm()
     if form.validate_on_submit():
@@ -20,6 +20,18 @@ def register():
         # add user to the database
         db.session.add(user)
         db.session.commit()
+
+        participant = Participant(partname=form.username.data,
+                                  fcd = 100000.0, usd=0.0, sar=0.0, rub=0.0, yen=0.0)
+        db.session.add(participant)
+        db.session.commit()
+
+        storage = Storage(storown=form.username.data,
+                          stornum=1,
+                          current_capacity=0)
+        db.session.add(storage)
+        db.session.commit()
+
         flash('You have successfully registered! You may now login.')
 
         # redirect to the login page
@@ -28,7 +40,7 @@ def register():
     # load registration template
     return render_template('auth/register.html', form=form, title='Register')
 
-# Edit the login view to redirect to the admin dashboard if employee is an admin
+# Edit the login view to redirect to the admin dashboard if user is an admin
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():

@@ -43,11 +43,11 @@ def add_participant():
     form = ParticipantForm()
     if form.validate_on_submit():
         participant = Participant(partname=form.partname.data,
-                                  fcd = form.fcd.data,
-                                  usd = form.usd.data,
-                                  sar = form.sar.data,
-                                  rub = form.rub.data,
-                                  yen = form.yen.data)
+                                  fcd = float(form.fcd.data),
+                                  usd = float(form.usd.data),
+                                  sar = float(form.sar.data),
+                                  rub = float(form.rub.data),
+                                  yen = float(form.yen.data))
         try:
             # add participant to the database
             db.session.add(participant)
@@ -80,11 +80,11 @@ def edit_participant(id):
     form = ParticipantForm(obj=participant)
     if form.validate_on_submit():
         participant.partname = form.partname.data
-        participant.fcd = form.fcd.data
-        participant.usd = form.usd.data
-        participant.sar = form.sar.data
-        participant.rub = form.rub.data
-        participant.yen = form.yen.data
+        participant.fcd = eval( "".join( form.fcd.data.split(",") ) ) 
+        participant.usd = eval( "".join( form.usd.data.split(",") ) )
+        participant.sar = eval( "".join( form.sar.data.split(",") ) )
+        participant.rub = eval( "".join( form.rub.data.split(",") ) )
+        participant.yen = eval( "".join( form.yen.data.split(",") ) )
         db.session.commit()
         flash('You have successfully edited the participant.')
 
