@@ -6,6 +6,8 @@ from forms import ParticipantForm, StorageForm
 from .. import db
 from ..models import Participant, Storage
 
+max_capacity=50
+
 def check_admin():
     """
     Prevent non-admins from accessing the page
@@ -141,23 +143,26 @@ def add_storage():
 
     form = StorageForm()
     if form.validate_on_submit():
-        storage = Storage(storown=form.storown.data,
-                          stornum=form.stornum.data,
-                          current_capacity=form.current_capacity.data)
+        if(form.current_capacity.data>max_capacity*form.stornum.data):
+            flash('Error: input exceeded maximum capacity.')
+        else:
+            storage = Storage(storown=form.storown.data,
+                            stornum=form.stornum.data,
+                            current_capacity=form.current_capacity.data)
 
-        try:
-            # add storage to the database
-            db.session.add(storage)
-            db.session.commit()
-            flash('You have successfully added a new storage.')
-        except:
-            # in case role name already exists
-            flash('Error: storage already exists.')
+            try:
+                # add storage to the database
+                db.session.add(storage)
+                db.session.commit()
+                flash('You have successfully added a new storage.')
+            except:
+                # in case storage name already exists
+                flash('Error: storage already exists.')
 
-        # redirect to the roles page
+        # redirect to the storages page
         return redirect(url_for('admin.list_storages'))
 
-    # load role template
+    # load storage template
     return render_template('admin/storages/storage.html', add_storage=add_storage,
                            form=form, title='Add Storage')
 
@@ -175,14 +180,17 @@ def edit_storage(id):
     storage = Storage.query.get_or_404(id)
     form = StorageForm(obj=storage)
     if form.validate_on_submit():
-        storage.storown = form.storown.data
-        storage.stornum = form.stornum.data
-        storage.current_capacity = form.current_capacity.data
-        db.session.add(storage)
-        db.session.commit()
-        flash('You have successfully edited the storage.')
+        if(form.current_capacity.data > form.stornum.data * max_capacity):
+            flash('Error: input exceeded maximum capacity.')
+        else:
+            storage.storown = form.storown.data
+            storage.stornum = form.stornum.data
+            storage.current_capacity = form.current_capacity.data
+            db.session.add(storage)
+            db.session.commit()
+            flash('You have successfully edited the storage.')
 
-        # redirect to the roles page
+        # redirect to the storages page
         return redirect(url_for('admin.list_storages'))
 
     form.current_capacity.data = storage.current_capacity
@@ -205,7 +213,7 @@ def delete_storage(id):
     db.session.commit()
     flash('You have successfully deleted the storage.')
 
-    # redirect to the roles page
+    # redirect to the storages page
     return redirect(url_for('admin.list_storages'))
 
     return render_template(title="Delete Storage")
