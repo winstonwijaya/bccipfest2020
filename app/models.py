@@ -65,11 +65,11 @@ class Participant(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     partname = db.Column(db.String(60), index=True, unique=True)
-    fcd = db.Column(db.Float, default=0)
-    usd = db.Column(db.Float, default=0)
-    sar = db.Column(db.Float, default=0)
-    rub = db.Column(db.Float, default=0)
-    yen = db.Column(db.Float, default=0)
+    fcd = db.Column(db.Numeric, default=0)
+    usd = db.Column(db.Float(20,6), default=0)
+    sar = db.Column(db.Float(20,6), default=0)
+    rub = db.Column(db.Float(20,6), default=0)
+    yen = db.Column(db.Float(20,6), default=0)
     users = db.relationship('User', backref='participant', lazy='dynamic')
 
     def __repr__(self):

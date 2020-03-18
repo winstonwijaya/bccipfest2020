@@ -6,7 +6,7 @@ from forms import ParticipantForm, StorageForm
 from .. import db
 from ..models import Participant, Storage
 
-max_capacity=50
+max_capacity=800
 
 def check_admin():
     """
@@ -80,11 +80,13 @@ def edit_participant(id):
     form = ParticipantForm(obj=participant)
     if form.validate_on_submit():
         participant.partname = form.partname.data
+        print(eval( "".join( form.fcd.data.split(",") ) ))
         participant.fcd = eval( "".join( form.fcd.data.split(",") ) ) 
         participant.usd = eval( "".join( form.usd.data.split(",") ) )
         participant.sar = eval( "".join( form.sar.data.split(",") ) )
         participant.rub = eval( "".join( form.rub.data.split(",") ) )
         participant.yen = eval( "".join( form.yen.data.split(",") ) )
+        print(participant.fcd)
         db.session.commit()
         flash('You have successfully edited the participant.')
 
@@ -143,12 +145,13 @@ def add_storage():
 
     form = StorageForm()
     if form.validate_on_submit():
-        if(form.current_capacity.data>max_capacity*form.stornum.data):
+        print(int(form.current_capacity.data))
+        if(int(form.current_capacity.data)>max_capacity*form.stornum.data):
             flash('Error: input exceeded maximum capacity.')
         else:
             storage = Storage(storown=form.storown.data,
                             stornum=form.stornum.data,
-                            current_capacity=form.current_capacity.data)
+                            current_capacity= int(form.current_capacity.data))
 
             try:
                 # add storage to the database
@@ -180,12 +183,12 @@ def edit_storage(id):
     storage = Storage.query.get_or_404(id)
     form = StorageForm(obj=storage)
     if form.validate_on_submit():
-        if(form.current_capacity.data > form.stornum.data * max_capacity):
+        if( eval(form.current_capacity.data ) > form.stornum.data * max_capacity):
             flash('Error: input exceeded maximum capacity.')
         else:
             storage.storown = form.storown.data
             storage.stornum = form.stornum.data
-            storage.current_capacity = form.current_capacity.data
+            storage.current_capacity = eval( "".join( form.current_capacity.data.split(",") ) )
             db.session.add(storage)
             db.session.commit()
             flash('You have successfully edited the storage.')

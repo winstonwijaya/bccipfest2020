@@ -1,2 +1,1 @@
-export FLASK_CONFIG=development
-export FLASK_APP=run.py
+#BCC IPFEST 2020 Game Event Website

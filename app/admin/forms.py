@@ -23,5 +23,5 @@ class StorageForm(FlaskForm):
     """
     storown = StringField('Participant', validators=[DataRequired()])
     stornum = IntegerField('StorageNumber', validators=[InputRequired()])
-    current_capacity = IntegerField('CurrentFill', validators=[InputRequired()])
+    current_capacity = StringField('CurrentFill', validators=[InputRequired()])
     submit = SubmitField('Submit')
